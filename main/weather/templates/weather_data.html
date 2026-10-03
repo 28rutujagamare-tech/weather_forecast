@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather Details</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      height: 100vh;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      /* Animated gradient background */
+      background: linear-gradient(-45deg, #74ebd5, #ACB6E5, #667eea, #764ba2);
+      background-size: 400% 400%;
+      animation: gradientBG 12s ease infinite;
+    }
+
+
+    form {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      width: 350px;
+      text-align: center;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      color: #667eea;
+      font-size: 22px;
+    }
+
+    p {
+      margin: 10px 0;
+      padding: 10px;
+      background: #f9f9f9;
+      border-left: 4px solid #667eea;
+      border-radius: 6px;
+      color: #333;
+      font-size: 15px;
+      animation: slideUp 0.5s ease;
+    }
+     .btn {
+      background-color: #0c3c70;   
+      color: white;               
+      padding: 10px 20px;          
+      border: none;                
+      border-radius: 5px;          
+      cursor: pointer;             
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn:hover {
+      background-color: #71a2d7;   
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+  </style>
+</head>
+<body>
+  <form method="POST">
+    {% csrf_token %}
+    <h2>Weather Details</h2>
+
+    <p>City: {{ city }}</p>
+    <p>Temperature: {{ temperature }} °C</p>
+    <p>Humidity: {{ humidity }}%</p>
+    <p>Weather: {{ description }}</p>
+
+     
+    <a href="{% url 'city' %}" class="btn">Go to home</a>
+    </a>
+  </form>
+</body>
+</html>
